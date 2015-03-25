@@ -255,7 +255,7 @@ suite.addBatch({
        assert.deepEqual(p("1 01 1990"), local(1990, 0, 1));
        assert.deepEqual(p("0 04 1991"), local(1991, 1, 3));
        assert.deepEqual(p("0 00 1995"), local(1995, 0, 1));
-       assert.isNull(p("03 2010"));
+       assert.isNull(p("X 03 2010"));
      },
      "parses week number (Sunday) and year": function(format) {
        var p = format("%U %Y").parse;

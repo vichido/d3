@@ -255,7 +255,21 @@ suite.addBatch({
        assert.deepEqual(p("1 01 1990"), local(1990, 0, 1));
        assert.deepEqual(p("0 04 1991"), local(1991, 1, 3));
        assert.deepEqual(p("0 00 1995"), local(1995, 0, 1));
-       assert.isNull(p("X 03 2010"));
+       assert.isNull(p("03 2010"));
+     },
+     "parses week number (Sunday) and year": function(format) {
+       var p = format("%U %Y").parse;
+       assert.deepEqual(p("01 1990"), local(1990, 0, 14));
+       assert.deepEqual(p("04 1991"), local(1991, 1, 3));
+       assert.deepEqual(p("00 1995"), local(1995, 0, 1));
+       assert.isNull(p("03 2010"));
+     },
+     "parses week number (Monday) and year": function(format) {
+       var p = format("%W %Y").parse;
+       assert.deepEqual(p("01 1990"), local(1990, 0, 1));
+       assert.deepEqual(p("04 1991"), local(1991, 1, 4));
+       assert.deepEqual(p("00 1995"), local(1995, 0, 2));
+       assert.isNull(p("03 2010"));
      },
       "parses numeric date": function(format) {
         var p = format("%m/%d/%y").parse;
